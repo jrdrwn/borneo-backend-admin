@@ -1,0 +1,10 @@
+const router = require('express').Router();
+const { listEvents, createEvent, updateEvent, deleteEvent } = require('../controllers/eventController');
+const { protectAdmin } = require('../middleware/authMiddleware');
+const { makeUpload } = require('../middleware/uploadMiddleware');
+const upload = makeUpload('events');
+router.get('/', listEvents);
+router.post('/admin', protectAdmin, upload.single('image'), createEvent);
+router.put('/admin/:id', protectAdmin, upload.single('image'), updateEvent);
+router.delete('/admin/:id', protectAdmin, deleteEvent);
+module.exports = router;

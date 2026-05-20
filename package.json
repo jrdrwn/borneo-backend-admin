@@ -1,0 +1,25 @@
+{
+  "name": "borneo-trip-admin-neo4j",
+  "version": "2.0.0",
+  "description": "Backend admin BorneoTrip: login MySQL + CRUD Knowledge Graph Neo4j + upload foto",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "seed:admin": "node database/seedAdmin.js"
+  },
+  "dependencies": {
+    "bcryptjs": "latest",
+    "cors": "latest",
+    "dotenv": "latest",
+    "express": "latest",
+    "jsonwebtoken": "latest",
+    "morgan": "latest",
+    "multer": "latest",
+    "mysql2": "latest",
+    "neo4j-driver": "latest"
+  },
+  "devDependencies": {
+    "nodemon": "latest"
+  }
+}
