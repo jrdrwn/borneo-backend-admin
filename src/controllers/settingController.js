@@ -27,7 +27,7 @@ async function upsertSettings(req, res, next) {
       await pool.query(
         `INSERT INTO website_settings (setting_key, setting_value) VALUES ('hero_image', ?)
          ON DUPLICATE KEY UPDATE setting_value=VALUES(setting_value)`,
-        [`uploads/settings/${req.file.filename}`]
+        [req.file.url || req.file.path || req.file.location || null]
       );
     }
     res.json({ success: true, message: 'Pengaturan website berhasil diperbarui' });

@@ -3,7 +3,7 @@ const slugify = require('../utils/slugify');
 const { mapImageUrls } = require('../utils/fileUrl');
 
 function eventImage(file) {
-  return file ? `uploads/events/${file.filename}` : null;
+  return file ? file.url || file.path || file.location || null : null;
 }
 
 async function listEvents(req, res, next) {

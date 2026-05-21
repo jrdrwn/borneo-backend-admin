@@ -3,7 +3,7 @@ const { fileUrl } = require('../utils/fileUrl');
 const slugify = require('../utils/slugify');
 
 function filePath(folder, file) {
-  return file ? `uploads/${folder}/${file.filename}` : null;
+  return file ? file.url || file.path || file.location || null : null;
 }
 
 function numberOrNull(value) {

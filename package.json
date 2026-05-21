@@ -9,6 +9,7 @@
     "seed:admin": "node database/seedAdmin.js"
   },
   "dependencies": {
+    "@imagekit/nodejs": "^7.6.1",
     "bcryptjs": "latest",
     "cors": "latest",
     "dotenv": "latest",
