@@ -1,7 +1,8 @@
 let ImageKitCtor = null;
+let toFile = null;
 
 try {
-  ({ ImageKit: ImageKitCtor } = require('@imagekit/nodejs'));
+  ({ ImageKit: ImageKitCtor, toFile } = require('@imagekit/nodejs'));
 } catch (_) {}
 
 function requiredEnv(name) {
@@ -58,10 +59,14 @@ async function uploadBufferToImageKit(file, folderName = '') {
     return null;
   }
 
+  if (!toFile) {
+    throw new Error('Package @imagekit/nodejs belum terpasang dengan benar. Jalankan npm install di folder backend.');
+  }
+
   const folder = buildUploadFolder(folderName);
   const fileName = `${Date.now()}-${safeBaseName(file.originalname)}`;
-  const result = await getImageKit().upload({
-    file: file.buffer.toString('base64'),
+  const result = await getImageKit().files.upload({
+    file: await toFile(file.buffer, file.originalname || fileName),
     fileName,
     useUniqueFileName: true,
     ...(folder ? { folder } : {})
